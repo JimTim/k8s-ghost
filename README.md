@@ -111,3 +111,12 @@ type: Opaque
 
 - **kustomize.config.k8s.io/needs-hash** --> A hash is generated on the secret file. This restarts the deployment if the secret changes.
 - **kustomize.config.k8s.io/behavior** --> This annotation is essential, otherwise the existing secret from this base cannot be overwritten.
+
+### Command
+
+```shell
+kustomize build --enable-alpha-plugins overlay/instance | less
+kustomize build --enable-alpha-plugins overlay/nerdware | kubectl diff -f -
+# and after all checks
+kustomize build --enable-alpha-plugins overlay/instance | kubectl apply -f -
+```
