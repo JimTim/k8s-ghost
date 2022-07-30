@@ -1,0 +1,5 @@
+useMinFiles=true
+privacy__useUpdateCheck=true
+privacy__useGravatar=false
+privacy__useRpcPing=false
+privacy__useStructuredData=false

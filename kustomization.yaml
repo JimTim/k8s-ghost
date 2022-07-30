@@ -1,0 +1,41 @@
+#
+# This Kustomization puts all under
+# resources specified files together.
+#
+#
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ./secret/secret.yaml
+- ./deployment.yaml
+- ./ingress.yaml
+- ./pvc.yaml
+- ./service.yaml
+
+images:
+- name: ghost
+  newName: ghost
+  newTag: "5-alpine"
+
+configMapGenerator:
+ - name: config
+   envs:
+    - config/envs.txt
+
+vars:
+- name: DOMAIN
+  objref:
+    kind: Ingress
+    name: ghost
+    apiVersion: networking.k8s.io/v1
+  fieldref:
+    fieldpath: spec.rules.0.host
+
+configurations:
+  - varreferences.yaml
+
+commonLabels:
+  app.kubernetes.io/name: ghost
+
+
