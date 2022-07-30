@@ -116,7 +116,7 @@ type: Opaque
 
 ```shell
 kustomize build --enable-alpha-plugins overlay/instance | less
-kustomize build --enable-alpha-plugins overlay/nerdware | kubectl diff -f -
+kustomize build --enable-alpha-plugins overlay/instance | kubectl diff -f -
 # and after all checks
 kustomize build --enable-alpha-plugins overlay/instance | kubectl apply -f -
 ```
